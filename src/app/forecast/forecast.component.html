@@ -1,0 +1,71 @@
+<div *ngIf='locationFound()'>
+  <h4 class="col-6 mt-4 ml-2">Vädret i {{currentWeather.name}} de kommande 5 dagarna(3 timmars intervall)</h4>
+  <div *ngFor='let l of forecast.list' class="card-body">
+    <div class="card-header rounded-bottom">
+      <span *ngFor='let weather of l.weather' class="d-inline">
+          <i class="fas fa-cloud fa-2x mr-3" *ngIf="weather?.description === 'mulet'"></i>
+          <i class="fas fa-cloud fa-2x mr-3" *ngIf="weather?.description === 'molnigt'"></i>
+          <i class="fas fa-cloud fa-2x mr-3" *ngIf="weather?.description === 'lätt molnighet'"></i>
+          <i class="fas fa-cloud-rain fa-2x mr-3" *ngIf="weather?.description === 'lätt regn'"></i>
+          <i class="fas fa-cloud-rain fa-2x mr-3" *ngIf="weather?.description === 'måttligt regn'"></i>
+          <i class="fas fa-sun-o fa-2x mr-3" *ngIf="weather?.description === 'klar himmel'"></i>
+          <i class="fas fa-cloud-rain fa-2x mr-3" *ngIf="weather?.description === 'något regn'"></i>
+          <i class="fas fa-cloud fa-2x mr-3" *ngIf="weather?.description === 'växlande molnighet'"></i>
+          <i class="fas fa-snowflake-o fa-2x mr-3" *ngIf="weather?.description === 'lätt snöfall'"></i>
+          <i class="fas fa-snowflake-o fa-2x mr-3" *ngIf="weather?.description === 'snöfall'"></i>
+          <h5 class="d-inline">{{l.dt * 1000 | date:'medium':'GMT+2'}}</h5>
+      </span>
+    </div>
+    <div class="card-body">
+      <table *ngIf='locationFound()'>
+        <tbody>
+        <tr>
+          <td>Temperatur</td>
+          <td>{{l.main?.temp - 273.15 | number:'1.0-0'}}<sup>o</sup>C</td>
+        </tr>
+        <tr>
+          <td>Minsta temperatur:</td>
+          <td>{{l.main?.temp_min - 273.15 | number:'1.0-0'}}<sup>o</sup>C</td>
+        </tr>
+        <tr>
+          <td>Högsta temperatur:</td>
+          <td>{{l.main?.temp_max - 273.15 | number:'1.0-0'}}<sup>o</sup>C</td>
+        </tr>
+        <tr>
+          <td>Tryck</td>
+          <td>{{l.main?.pressure | number:'1.0-0'}}mb</td>
+        </tr>
+        <tr>
+          <td>Havsnivå</td>
+          <td>{{l.main?.sea_level | number:'1.0-0'}}m</td>
+        </tr>
+        <tr>
+          <td>Marknivå</td>
+          <td>{{l.main?.grnd_level | number:'1.0-0'}}m</td>
+        </tr>
+        <tr>
+          <td>Fuktighet</td>
+          <td> {{l.main?.humidity | number:'1.0-0'}}%</td>
+        </tr>
+        <tr>
+          <td>Vädret</td>
+          <span *ngFor='let weather of l.weather'>
+                {{weather?.description | titlecase}}
+          </span>
+        </tr>
+        <tr>
+          <td>Vindhastighet</td>
+          <td>{{l.wind?.speed }}</td>
+        </tr>
+        <tr>
+          <td>Vindriktning</td>
+          <td>{{l.wind?.deg }}<sup>o</sup></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div *ngIf='!locationFound()'>
+  <h1 class="center">{{msg || 'Misslyckades att hämta väder.'}}</h1>
+</div>

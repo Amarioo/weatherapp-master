@@ -1,0 +1,20 @@
+<div class="sticky-top col-12 navbar bg-info text-light align-items-end">
+  <div class="col-3">
+    <img src="../../assets/Illustration4.png" class="img-fluid" width="70">
+    <a class="navbar-brand text-light">Amars Väderapp</a>
+  </div>
+  <form [formGroup]="topbarForm" class="d-flex col-6">
+    <input class="form-control rounded-right" formControlName="topBarSearch" placeholder="Sök efter stad"
+           [class.border-danger]="isInputInvalidTouchedOrDirty(topBarSearch)"
+           [class.is-invalid]="isInputInvalidTouchedOrDirty(topBarSearch)" [(ngModel)]='location'>
+
+    <div class="invalid-tooltip ml-3"
+         *ngIf="isInputInvalidTouchedOrDirty(topBarSearch) && topBarSearch.errors.required">
+      <div>
+        Du måste välja en stad
+      </div>
+    </div>
+    <button class="btn text-light" (click)="search()">Sök</button>
+
+  </form>
+</div>

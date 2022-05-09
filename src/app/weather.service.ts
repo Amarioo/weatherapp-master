@@ -15,7 +15,7 @@ export class WeatherService {
 
   getForecast(loc: string): any {
     return this.http.get(`${environment.apiUrl}/forecast?q=${loc}&lang=se&appid=${apiKey}`);
-  }
+}
 
   getUv(lat: number, lon: number): any {
     const startDate = Math.round(+moment(new Date()).subtract(1, 'week').toDate() / 1000);

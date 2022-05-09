@@ -1,0 +1,63 @@
+<div *ngIf='locationFound()'>
+  <h4 class="ml-2 mt-3 col-12 align-content-center">Vädret i {{currentWeather.name}},
+    {{currentWeather.sys?.country}} just
+    nu</h4>
+
+  <div class="card-body col-12">
+    <div class="card-header rounded-bottom ">
+      <div class="card-title">
+        <td>
+
+        </td>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body col-12">
+    <table *ngIf='locationFound()'>
+      <tbody>
+      <tr>
+        <td>Nuvarande temperatur:</td>
+        <td>{{currentWeather.main?.temp - 273.15 | number:'1.0-0'}}<sup>o</sup>C</td>
+      </tr>
+      <tr>
+        <td>Högsta temperatur:</td>
+        <td>{{currentWeather.main?.temp - 273.15 | number:'1.0-0'}}<sup>o</sup>C</td>
+      </tr>
+      <tr>
+        <td>Minsta temperatur:</td>
+        <td>{{currentWeather.main?.temp_min - 273.15 | number:'1.0-0'}}<sup>o</sup>C</td>
+      </tr>
+      <tr>
+        <td>Moln:</td>
+        <td>{{currentWeather.clouds?.all}}%</td>
+      </tr>
+      <tr>
+        <td>Fuktighet</td>
+        <td>{{currentWeather.main?.humidity}}%</td>
+      </tr>
+      <tr>
+        <td>Tryck</td>
+        <td>{{currentWeather.main?.pressure}}mb</td>
+      </tr>
+      <tr>
+        <td>Soluppgång</td>
+        <td>{{currentWeather.sys?.sunrise * 1000 | date:'long'}}</td>
+      </tr>
+      <tr>
+        <td>Solnedgång</td>
+        <td>{{currentWeather.sys?.sunset * 1000 | date:'long'}}</td>
+      </tr>
+      <tr>
+        <td>Synlighet</td>
+        <td>{{currentWeather.visibility}}m</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf='!locationFound()'>
+    <h1 class="center">{{msg || 'Misslyckades att hämta väder.'}}</h1>
+    moeg
+  </div>
+</div>

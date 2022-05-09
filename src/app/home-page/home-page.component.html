@@ -1,0 +1,18 @@
+<app-top-bar></app-top-bar>
+<div class="card">
+  <div *ngIf='!loc' id='search'>
+    <h4 class="ml-3 mt-3 col-12 align-content-center">Skriv in en plats för att få väderinformation</h4>
+  </div>
+  <mat-tab-group *ngIf='loc' class="position-sticky">
+    <mat-tab label="Vädret just nu">
+      <app-current-weather></app-current-weather>
+    </mat-tab>
+    <mat-tab label="Prognos">
+      <app-forecast></app-forecast>
+    </mat-tab>
+    <mat-tab label="UV Index">
+      <app-uv></app-uv>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+

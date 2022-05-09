@@ -1,0 +1,23 @@
+<div *ngIf='resultFound()'>
+  <h4 class="col-6 mt-4 ml-2">Nuvarande UV i {{currentWeather.name}} just nu</h4>
+  <div class="card-body" *ngFor='let l of uv'>
+    <div class="card-header rounded-bottom">
+      <div class="card-title">
+        <h5>{{l.date_iso | date:'MMM d, y, h:mm:ss a'}}</h5>
+      </div>
+    </div>
+    <div class="card-body">
+      <table>
+        <tbody>
+        <tr>
+          <td>UV Index</td>
+          <td>{{l.value}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div *ngIf='!resultFound()'>
+  <h1 class="center">{{msg || 'Misslyckades hämta UV-information.'}}</h1>
+</div>
